@@ -1,6 +1,6 @@
 namespace ConsoleApp1.Clases;
 
-public class AbonatPremium
+public class AbonatPremium:Abonat
 {
     
 }
