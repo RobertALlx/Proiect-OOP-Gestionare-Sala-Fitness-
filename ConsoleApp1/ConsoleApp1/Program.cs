@@ -1,2 +1,9 @@
-﻿
-Console.WriteLine("Hello, World!");
+﻿namespace ConsoleApp1;
+
+class Program
+{
+    static void Main(string[] args)
+    {
+        
+    }
+}
