@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using ConsoleApp1.Clases;
 
 namespace ConsoleApp1
 {
@@ -82,6 +83,44 @@ namespace ConsoleApp1
             catch (Exception ex)
             {
                 Console.WriteLine($"Eroare la salvarea programării: {ex.Message}");
+            }
+        }
+
+        // Salvare in fisier JSON
+        public void SaveToFile(string fileName)
+        {
+            try
+            {
+                string jsonContent = System.Text.Json.JsonSerializer.Serialize(this, new System.Text.Json.JsonSerializerOptions { WriteIndented = true });
+                File.WriteAllText(fileName, jsonContent);
+                Console.WriteLine("Starea sălii a fost salvată cu succes.");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Eroare la salvarea fișierului: {ex.Message}");
+            }
+        }
+
+        // Incarcare din fisier JSON
+        public static SalaFitness LoadFromFile(string fileName)
+        {
+            try
+            {
+                if (File.Exists(fileName))
+                {
+                    string jsonContent = File.ReadAllText(fileName);
+                    return System.Text.Json.JsonSerializer.Deserialize<SalaFitness>(jsonContent);
+                }
+                else
+                {
+                    Console.WriteLine("Fișierul nu există. Se va crea o sală nouă.");
+                    return new SalaFitness("Sala Nouă", "Adresa Nouă", "08:00 - 22:00");
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Eroare la încărcarea fișierului: {ex.Message}");
+                return new SalaFitness("Sala Nouă", "Adresa Nouă", "08:00 - 22:00");
             }
         }
     }
