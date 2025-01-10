@@ -1,0 +1,3 @@
+Andrei Popescu,Maria Ionescu,2023-11-20 15:00,2
+Ioana Dima,George Vasilescu,2023-11-21 10:00,1.5
+Mihai Popa,Maria Ionescu,2023-11-22 14:00,1

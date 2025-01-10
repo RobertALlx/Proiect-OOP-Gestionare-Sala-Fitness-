@@ -1,0 +1,85 @@
+{
+  "Nume": "Sala Existenta",
+  "Adresa": "Strada Principală 123, București",
+  "ProgramFunctionare": "08:00 - 22:00",
+  "Antrenori": [
+    {
+      "NumeComplet": "Ion Popescu",
+      "Specializare": "Fitness",
+      "NumarMaximClienti": 10,
+      "Orar": {
+        "Luni": true,
+        "Marti": true,
+        "Miercuri": false
+      }
+    },
+    {
+      "NumeComplet": "Maria Ionescu",
+      "Specializare": "Yoga",
+      "NumarMaximClienti": 8,
+      "Orar": {
+        "Joi": true,
+        "Vineri": true,
+        "Sambata": false
+      }
+    },
+    {
+      "NumeComplet": "George Vasilescu",
+      "Specializare": "Cardio",
+      "NumarMaximClienti": 12,
+      "Orar": {
+        "Luni": true,
+        "Miercuri": true,
+        "Vineri": true
+      }
+    },
+    {
+      "NumeComplet": "Alexandra Dima",
+      "Specializare": "Bodybuilding",
+      "NumarMaximClienti": 15,
+      "Orar": {
+        "Marti": true,
+        "Joi": true,
+        "Sambata": true
+      }
+    }
+  ],
+  "AbonatiInregistrati": [
+    {
+      "Nume": "Andrei Popescu",
+      "Cnp": "1981234567890",
+      "Username": "andrei123",
+      "Password": "parola123",
+      "TipAbonament": "Standard",
+      "TaxaSuplimentara": 10.0,
+      "IstoricAntrenamente": []
+    },
+    {
+      "Nume": "Ioana Dima",
+      "Cnp": "2951234567890",
+      "Username": "ioana456",
+      "Password": "parola456",
+      "TipAbonament": "Premium",
+      "TaxaSuplimentara": 20.0,
+      "IstoricAntrenamente": []
+    },
+    {
+      "Nume": "Mihai Ionescu",
+      "Cnp": "1961111223344",
+      "Username": "mihai789",
+      "Password": "parola789",
+      "TipAbonament": "Standard",
+      "TaxaSuplimentara": 5.0,
+      "IstoricAntrenamente": []
+    },
+    {
+      "Nume": "Ana Popa",
+      "Cnp": "2981010123456",
+      "Username": "ana123",
+      "Password": "parola1234",
+      "TipAbonament": "Premium",
+      "TaxaSuplimentara": 15.0,
+      "IstoricAntrenamente": []
+    }
+  ]
+}
