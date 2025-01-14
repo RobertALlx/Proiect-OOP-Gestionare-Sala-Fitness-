@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using ConsoleApp1;
 using ConsoleApp1.Clases;
 
 namespace ConsoleApp1
