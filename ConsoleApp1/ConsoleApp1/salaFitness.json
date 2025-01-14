@@ -44,10 +44,13 @@
       }
     }
   ],
+
+
+
   "AbonatiInregistrati": [
     {
       "Nume": "Andrei Popescu",
-      "Cnp": "1981234567890",
+      "Cnp": "1990525410386",
       "Username": "andrei123",
       "Password": "parola123",
       "TipAbonament": "Standard",
@@ -56,7 +59,7 @@
     },
     {
       "Nume": "Ioana Dima",
-      "Cnp": "2951234567890",
+      "Cnp": "2991125197613",
       "Username": "ioana456",
       "Password": "parola456",
       "TipAbonament": "Premium",
@@ -65,7 +68,7 @@
     },
     {
       "Nume": "Mihai Ionescu",
-      "Cnp": "1961111223344",
+      "Cnp": "5021025192291",
       "Username": "mihai789",
       "Password": "parola789",
       "TipAbonament": "Standard",
@@ -74,12 +77,51 @@
     },
     {
       "Nume": "Ana Popa",
-      "Cnp": "2981010123456",
+      "Cnp": "5250114197014",
       "Username": "ana123",
       "Password": "parola1234",
       "TipAbonament": "Premium",
       "TaxaSuplimentara": 15.0,
       "IstoricAntrenamente": []
+    },
+    {
+      "Nume": "Cristian Radu",
+      "Cnp": "5040114247775",
+      "Username": "cristianr",
+      "Password": "parola567",
+      "TipAbonament": "Standard",
+      "TaxaSuplimentara": 12.0,
+      "IstoricAntrenamente": []
+    },
+    {
+      "Nume": "Elena Georgescu",
+      "Cnp": "1820130442940",
+      "Username": "elenag",
+      "Password": "parola890",
+      "TipAbonament": "Premium",
+      "TaxaSuplimentara": 25.0,
+      "IstoricAntrenamente": []
+    },
+    {
+      "Nume": "Alexandru Vasile",
+      "Cnp": "2820114298692",
+      "Username": "alexv",
+      "Password": "parola321",
+      "TipAbonament": "Standard",
+      "TaxaSuplimentara": 8.0,
+      "IstoricAntrenamente": []
+    },
+    {
+      "Nume": "Clara Tudor",
+      "Cnp": "1850914389474",
+      "Username": "clarat",
+      "Password": "parola654",
+      "TipAbonament": "Premium",
+      "TaxaSuplimentara": 18.0,
+      "IstoricAntrenamente": []
     }
   ]
 }
+
+
+
