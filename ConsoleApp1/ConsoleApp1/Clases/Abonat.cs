@@ -1,6 +1,7 @@
 using System;
 using System.Text.RegularExpressions;
 using System.Collections.Generic;
+using ConsoleApp1.Clases;
 
 namespace ConsoleApp1
 {
@@ -19,7 +20,12 @@ namespace ConsoleApp1
         public string Username { get => _username; set => _username = value; }
         public string Password { get => _password; set => _password = value; }
         public string TipAbonament { get => _tipAbonament; set => _tipAbonament = value; }
-        public double TaxaSuplimentara { get => _taxaSuplimentara; }
+        public double TaxaSuplimentara
+        {
+            get => _taxaSuplimentara;
+            set => _taxaSuplimentara = value;
+        }
+
         public IReadOnlyList<Antrenament> IstoricAntrenamente => _istoricAntrenamente.AsReadOnly();
 
         public Abonat(string nume, string cnp, string username, string password, string tipAbonament)
@@ -71,11 +77,62 @@ namespace ConsoleApp1
             return costLunar + _taxaSuplimentara;
         }
 
-        // Validare CNP
-        private bool ValidareCnp(string cnp)
+        public static bool ValidareCnp(string cnp)
         {
-            return Regex.IsMatch(cnp, @"^[1-8]\d{12}$");
+            if (string.IsNullOrEmpty(cnp) || cnp.Length != 13)
+            {
+                Console.WriteLine("CNP-ul nu are 13 caractere.");
+                return false;
+            }
+
+            if (!Regex.IsMatch(cnp, @"^\d{13}$"))
+            {
+                Console.WriteLine("CNP-ul nu este numeric.");
+                return false;
+            }
+
+            int sex = int.Parse(cnp[0].ToString());
+            if (sex < 1 || sex > 8)
+            {
+                Console.WriteLine("Prima cifra a CNP-ului este invalida.");
+                return false;
+            }
+
+            int an = int.Parse(cnp.Substring(1, 2));
+            int luna = int.Parse(cnp.Substring(3, 2));
+            int zi = int.Parse(cnp.Substring(5, 2));
+            int secol = (sex <= 2 || sex == 7 || sex == 8) ? 1900 : 2000;
+            if (sex == 5 || sex == 6) secol = 2000;
+            if (sex == 7 || sex == 8) secol = 1800;
+
+            an += secol;
+
+            if (!DateTime.TryParse($"{an}-{luna:D2}-{zi:D2}", out _))
+            {
+                Console.WriteLine("Data de nastere din CNP este invalida.");
+                return false;
+            }
+
+            int[] controlWeights = { 2, 7, 9, 1, 4, 6, 3, 5, 8, 2, 7, 9 };
+            int suma = 0;
+            for (int i = 0; i < 12; i++)
+            {
+                suma += int.Parse(cnp[i].ToString()) * controlWeights[i];
+            }
+
+            int cifraControlCalculata = suma % 11;
+            if (cifraControlCalculata == 10) cifraControlCalculata = 1;
+
+            if (int.Parse(cnp[12].ToString()) != cifraControlCalculata)
+            {
+                Console.WriteLine("Cifra de control a CNP-ului este incorecta.");
+                return false;
+            }
+
+            return true;
         }
+
+
 
         // Suprascrierea ToString pentru detalii abonat
         public override string ToString()
