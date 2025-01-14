@@ -1,4 +1,7 @@
-﻿namespace ConsoleApp1;
+﻿using System.Text.Json;
+using ConsoleApp1;
+
+namespace ConsoleApp1;
 
 class Program
 {
@@ -8,80 +11,95 @@ class Program
             SalaFitness salaFitness = LoadSalaFitness();
             
             salaFitness.IncarcaProgramariDinFisier(programariFilePath);
-            int optiune;
+           int optiune;
+ do
+ {
+     Console.WriteLine();
+     Console.WriteLine("--------Meniu--------");
+     Console.WriteLine("Selectati o optiune:");
+     Console.WriteLine("1. Autentificare");
+     Console.WriteLine("2. Inregistrare");
+     Console.WriteLine("3. Schimbare Parola");
+     Console.WriteLine("4. Listare Antrenori");
+     Console.WriteLine("5. Listare Abonati");
+     Console.WriteLine("6. Retrogradare Abonat");
+     Console.WriteLine("7. Promovare Abonat");
+     Console.WriteLine("8. Adaugare Programare");
+     Console.WriteLine("9. Afiseaza Programari");
+     Console.WriteLine("10. Modificare Programare");
+     Console.WriteLine("11. Anulare Programare");
+     Console.WriteLine("12. Listare Programari Ordonate");
+     Console.WriteLine("13. Listare Programari Ordonate Dupa Durata");
+     Console.WriteLine("14. Cautare Antrenor");
+     Console.WriteLine("15. Recalculare Abonamente");
+     Console.WriteLine("0. Iesire din aplicatie");
 
-            do
-            {
-                Console.WriteLine("\n--- Meniu ---");
-                Console.WriteLine("1. Autentificare / Inregistrare");
-                Console.WriteLine("2. Schimbare parola utilizator");
-                Console.WriteLine("3. Listarea tuturor antrenorilor");
-                Console.WriteLine("4. Listarea tuturor abonatilor");
-                Console.WriteLine("5. Retrogradare abonat de la Premium la Standard");
-                Console.WriteLine("6. Promovare abonat de la standard la premium");
-                Console.WriteLine("7. Adauga Programare");
-                Console.WriteLine("8. Afiseaza Programare");
-                Console.WriteLine("9. Modificare Programare");
-                Console.WriteLine("10. Anulare Programare");
-                Console.WriteLine("11. Listarea tuturor programarilor ordonate dupa numele antrenorului");
-                Console.WriteLine("12. Listarea tuturor programarilor ordonate după durata");
-                Console.WriteLine("13. Cautarea unui antrenor după nume si specializare");
-                Console.WriteLine("14. Recalculare lunara abonament pentru fiecare client în functie de programari");
-                Console.WriteLine("0. Iesire");
-                Console.Write("Selectati o optiune: ");
+     try
+     {
+         Console.Write("Introduceti optiunea dorita: ");
+         optiune = int.Parse(Console.ReadLine());
 
-                optiune = int.Parse(Console.ReadLine());
-
-                 switch (optiune)
-                {
-                    case 1:
-                        AutentificareInregistrare(salaFitness);
-                        break;
-                     case 2:
-                         SchimbareParola(salaFitness);
-                         break;
-                     case 3:
-                         ListareAntrenori(salaFitness);
-                         break;
-                     case 4:
-                         ListareAbonati(salaFitness);
-                         break;
-                     case 5:
-                          RetrogradareAbonat(salaFitness);
-                         break;
-                     case 6:
-                           PromovareAbonat(salaFitness);
-                         break;
-                    case 7:
-                          AdaugareProgramare(salaFitness);
-                        break;
-                    case 8:
-                         AfiseazaProgramari(salaFitness);
-                        break;
-                    case 9:
-                        ModificareProgramare(salaFitness);
-                        break;
-                    case 10:
-                         AnulareProgramare(salaFitness);
-                        break;
-                    case 11:
-                        ListareProgramariOrdonate(salaFitness);
-                        break;
-                    case 12:
-                        ListareProgramariOrdonateDupaDurata(salaFitness);
-                        break;
-                    case 13:
-                        CautareAntrenor(salaFitness);
-                        break;
-                    case 14:
-                        RecalculareAbonamente(salaFitness);
-                        break;
-                    case 0:
-                        Console.WriteLine("Iesire din aplicatie...");
-                        break;
-                 }
-                 
-            } while(optiune!=0); 
+         switch (optiune)
+         {
+             case 1:
+                 Autentificare(salaFitness);
+                 break;
+             case 2:
+                 Inregistrare(salaFitness);
+                 break;
+             case 3:
+                 SchimbareParola(salaFitness);
+                 break;
+             case 4:
+                 ListareAntrenori(salaFitness);
+                 break;
+             case 5:
+                 ListareAbonati(salaFitness);
+                 break;
+             case 6:
+                 RetrogradareAbonat(salaFitness);
+                 break;
+             case 7:
+                 PromovareAbonat(salaFitness);
+                 break;
+             case 8:
+                 AdaugareProgramare(salaFitness);
+                 break;
+             case 9:
+                 AfiseazaProgramari(salaFitness);
+                 break;
+             case 10:
+                 ModificareProgramare(salaFitness);
+                 break;
+             case 11:
+                 AnulareProgramare(salaFitness);
+                 break;
+             case 12:
+                 ListareProgramariOrdonate(salaFitness);
+                 break;
+             case 13:
+                 ListareProgramariOrdonateDupaDurata(salaFitness);
+                 break;
+             case 14:
+                 CautareAntrenor(salaFitness);
+                 break;
+             case 15:
+                 RecalculareAbonamente(salaFitness);
+                 break;
+             case 0:
+                 Console.WriteLine("Iesire din aplicatie...");
+                 break;
+             default:
+                 Console.WriteLine("Optiune invalida! Va rugam sa introduceti un numar intre 0 si 15.");
+                 break;
+         }
+     }
+     catch (FormatException) // Conversie de formatare esuata ex(a sau caractere speciale)
+     {
+         Console.WriteLine("Optiune invalida! Introduceti un numar valid intre 0 si 15.");
+         optiune = -1;
+     }
+ } while(optiune!=0);
 
              SaveSalaFitness(salaFitness);
             
@@ -131,13 +149,8 @@ class Program
             }
         }
 
-    static void AutentificareInregistrare(SalaFitness salaFitness)
+        static void Autentificare(SalaFitness salaFitness)
         {
-            Console.WriteLine("1. Autentificare\n2. Inregistrare");
-            int optiune = int.Parse(Console.ReadLine());
-
-            if (optiune == 1)
-            {
                 Console.Write("Introduceti username-ul: ");
                 string username = Console.ReadLine();
                 Console.Write("Introduceti parola: ");
@@ -151,29 +164,68 @@ class Program
                 {
                     Console.WriteLine("Autentificare esuata. Verificati credentialele.");
                 }
-            }
-            else if (optiune == 2)
-            {
-                Console.Write("Introduceti numele: ");
-                string nume = Console.ReadLine();
-                Console.Write("Introduceti CNP-ul: ");
-                string cnp = Console.ReadLine();
-                Console.Write("Introduceti username-ul: ");
-                string username = Console.ReadLine();
-                Console.Write("Introduceti parola: ");
-                string password = Console.ReadLine();
+            
 
-                Abonat abonat = new Abonat(nume, cnp, username, password, "Standard");
-                salaFitness.InregistreazaAbonat(abonat);
-            }
-            else
+        }
+        static void Inregistrare(SalaFitness salaFitness)
+        {
+            Console.Write("Introduceti numele: ");
+            string nume = Console.ReadLine();
+            if (string.IsNullOrWhiteSpace(nume))
             {
-                Console.WriteLine("Optiune invalida!");
+                Console.WriteLine("Numele nu poate fi gol.");
+                return;
             }
+
+            Console.Write("Introduceti CNP-ul: ");
+            string cnp = Console.ReadLine();
+
+            while (!Abonat.ValidareCnp(cnp))
+            {
+                Console.WriteLine("CNP-ul introdus este invalid. Incercati din nou.");
+                Console.Write("Introduceti CNP-ul: ");
+                cnp = Console.ReadLine();
+            }
+
+            Console.WriteLine("CNP-ul introdus este valid.");
+
+            if (salaFitness.AbonatiInregistrati.Any(a => a.Cnp == cnp))
+            {
+                Console.WriteLine("Un abonat cu acest CNP este deja inregistrat.");
+                return;
+            }
+
+            Console.Write("Introduceti username-ul: ");
+            string username = Console.ReadLine();
+            if (string.IsNullOrWhiteSpace(username))
+            {
+                Console.WriteLine("Username-ul nu poate fi gol.");
+                return;
+            }
+
+            if (salaFitness.AbonatiInregistrati.Any(a => a.Username == username))
+            {
+                Console.WriteLine("Acest username este deja folosit.");
+                return;
+            }
+
+            Console.Write("Introduceti parola: ");
+            string parola = Console.ReadLine();
+            if (string.IsNullOrWhiteSpace(parola))
+            {
+                Console.WriteLine("Parola nu poate fi goala.");
+                return;
+            }
+
+            // Inregistrarea abonatului dupa validare
+            Abonat abonat = new Abonat(nume, cnp, username, parola, "Standard");
+            salaFitness.InregistreazaAbonat(abonat);
         }
 
+       
 
-     static void SchimbareParola(SalaFitness salaFitness)
+
+        static void SchimbareParola(SalaFitness salaFitness)
         {
             Console.Write("Introduceti username-ul: ");
             string username = Console.ReadLine();
@@ -334,4 +386,3 @@ class Program
     
     
 }
-
